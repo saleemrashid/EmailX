@@ -1,0 +1,10 @@
+include ':android-common'
+include ':android-opt-bitmap'
+include ':calendar-common'
+include ':libchips'
+include ':libphotoviewer_appcompat'
+
+include ':Email'
+include ':com.android.emailcommon'
+include ':Exchange2'
+include ':UnifiedEmail'

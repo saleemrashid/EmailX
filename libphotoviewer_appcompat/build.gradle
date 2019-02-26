@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    lintOptions {
+        ignore 'MissingPermission'
+        ignore 'ResourceType'
+        ignore 'NewApi'
+    }
+    sourceSets {
+        main {
+            def photoviewerDir = 'photoviewer'
+
+            manifest {
+                srcFile 'AndroidManifest.xml'
+            }
+            java {
+                srcDir "${photoviewerDir}/src"
+                srcDir "${photoviewerDir}/appcompat/src"
+            }
+            res {
+                srcDir "${photoviewerDir}/res"
+                srcDir "${photoviewerDir}/appcompat/res"
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.core:core:1.0.0'
+    implementation 'androidx.legacy:legacy-support-core-utils:1.0.0'
+    implementation 'androidx.legacy:legacy-support-core-ui:1.0.0'
+    implementation 'androidx.fragment:fragment:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+}

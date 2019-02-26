@@ -1,0 +1,132 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+import java.util.regex.Pattern
+
+final Map<Pattern, String> REWRITE_MAP = [
+    (~/\bcom.android.email\b/): 'com.android.emailx',
+    (~/\bcom.android.exchange\b/): 'com.android.exchangex',
+]
+
+final File PATCH_DIR = file('patches')
+
+final Map<String, Project> PATCH_MAP = [
+    'Email': project(':Email'),
+    'Exchange': project(':Exchange2'),
+    'UnifiedEmail': project(':UnifiedEmail'),
+]
+
+@groovy.transform.InheritConstructors
+class PatternRewriteReader extends TransformReader {
+    public Map<Pattern, String> rewriteMap = null
+
+    @Override
+    protected String transform(String line) {
+        if (rewriteMap != null) {
+            rewriteMap.each { Pattern pattern, String replacement ->
+                line = line.replaceAll(pattern, replacement)
+            }
+        }
+
+        return line
+    }
+}
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.3.1'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    ext.registerRewriteTask = { String sourcePath ->
+        File sourceDir = file(sourcePath)
+        String name = sourceDir.name
+
+        File destDir = file("${project.buildDir}/${name}-generated")
+
+        def rewriteTask = tasks.register("rewrite${name.capitalize()}", Copy) {
+            from sourceDir
+            into destDir
+
+            filter([ rewriteMap: REWRITE_MAP ], PatternRewriteReader)
+            filteringCharset 'ISO-8859-1'
+        }
+
+        preBuild.dependsOn rewriteTask
+
+        return destDir
+    }
+
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ExecResult execGitCommand(File repository, Iterable<String> arguments, Closure closure = null) {
+    return exec {
+        workingDir repository
+        executable 'git'
+        args arguments
+
+        if (closure) {
+            closure.rehydrate(owner, this, this).call()
+        }
+    }
+}
+
+String resolveSubmoduleRemoteBranch(File submodule) {
+    String submodulePath = rootProject.projectDir.toPath().relativize(submodule.toPath())
+
+    String remoteBranch = new ByteArrayOutputStream().withStream { ByteArrayOutputStream stream ->
+        execGitCommand(rootProject.projectDir, ['submodule--helper', 'remote-branch', submodulePath]) {
+            standardOutput = stream
+        }
+
+        stream.toString()
+    }
+
+    return remoteBranch
+}
+
+task updateSubmodules {
+    doLast {
+        execGitCommand(rootProject.projectDir, ['submodule', 'update', '--init'])
+    }
+}
+
+PATCH_MAP.each { String name, Project subproject ->
+    configure(subproject) {
+        File repository = file(name)
+
+        File sourceDir = new File(PATCH_DIR, name)
+        FileTree sourceTree = fileTree(dir: sourceDir, include: '**/*.patch')
+
+        task applyPatches {
+            doLast {
+                List<String> patches = sourceTree.collect { File patch -> patch.absolutePath }.sort()
+                execGitCommand(repository, ['am', '--'] + patches)
+            }
+        }
+
+        task formatPatches {
+            doLast {
+                String remoteBranch = resolveSubmoduleRemoteBranch(repository)
+                sourceTree.visit { FileVisitDetails details ->
+                    details.file.delete()
+                }
+                execGitCommand(repository, ['format-patch', '-o', sourceDir.absolutePath, '-N', '--zero-commit', "${remoteBranch}@{upstream}"])
+            }
+        }
+    }
+}

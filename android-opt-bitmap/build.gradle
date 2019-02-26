@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 18
+    lintOptions {
+        ignore 'NewApi'
+        ignore 'WrongConstant'
+    }
+    sourceSets {
+        main {
+            def bitmapDir = 'bitmap'
+
+            manifest {
+                srcFile 'AndroidManifest.xml'
+            }
+            java {
+                srcDir "${bitmapDir}/src"
+            }
+            res {
+                srcDir "${bitmapDir}/res"
+            }
+        }
+    }
+}

@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId 'com.android.emailx'
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 1
+        versionName '1.0'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'Email/proguard.flags'
+        }
+    }
+    lintOptions {
+        ignore 'ResourceType'
+        ignore 'MissingDefaultResource'
+        ignore 'NewApi'
+        ignore 'ValidFragment'
+        ignore 'AppCompatResource'
+
+        ignore 'StringFormatInvalid'
+        ignore 'MissingTranslation'
+        ignore 'ExtraTranslation'
+
+        ignore 'AppLinkUrlError'
+    }
+    sourceSets {
+        main {
+            def emailDir = registerRewriteTask('Email')
+
+            manifest {
+                srcFile "${emailDir}/AndroidManifest.xml"
+            }
+            java {
+                srcDir "${emailDir}/src"
+                srcDir "${emailDir}/provider_src"
+            }
+            res {
+                srcDir "${emailDir}/res"
+            }
+        }
+    }
+    useLibrary 'org.apache.http.legacy'
+}
+
+dependencies {
+    implementation project(':UnifiedEmail')
+
+    implementation project(':com.android.emailcommon')
+    implementation project(':libchips')
+    implementation project(':libphotoviewer_appcompat')
+    implementation 'androidx.core:core:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation project(':android-common')
+    implementation 'com.google.guava:guava:27.0.1-android'
+}

@@ -1,0 +1,20 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    lintOptions {
+        ignore 'LongLogTag'
+    }
+    sourceSets {
+        main {
+            def commonDir = 'ex/common'
+
+            manifest {
+                srcFile 'AndroidManifest.xml'
+            }
+            java {
+                srcDir "${commonDir}/java"
+            }
+        }
+    }
+}

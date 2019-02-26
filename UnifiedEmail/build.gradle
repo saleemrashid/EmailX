@@ -1,0 +1,59 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    lintOptions {
+        ignore 'MissingPermission'
+        ignore 'MissingSuperCall'
+        ignore 'WrongViewCast'
+        ignore 'ReferenceType'
+        ignore 'ResourceType'
+        ignore 'WebViewLayout'
+        ignore 'MissingDefaultResource'
+        ignore 'NewApi'
+        ignore 'WrongConstant'
+        ignore 'AppCompatResource'
+        ignore 'AppCompatCustomView'
+        ignore 'RestrictedApi'
+        ignore 'UniqueConstants'
+
+        ignore 'MissingQuantity'
+        ignore 'MissingTranslation'
+        ignore 'ImpliedQuantity'
+
+        ignore 'RtlCompat'
+    }
+    sourceSets {
+        main {
+            def unifiedEmailDir = registerRewriteTask('UnifiedEmail')
+
+            manifest {
+                srcFile 'AndroidManifest.xml'
+            }
+            java {
+                srcDir "${unifiedEmailDir}/src"
+            }
+            res {
+                srcDir "${unifiedEmailDir}/res"
+            }
+            assets {
+                srcDir "${unifiedEmailDir}/assets"
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation project(':libchips')
+    implementation project(':libphotoviewer_appcompat')
+    implementation 'androidx.core:core:1.0.0'
+    implementation 'androidx.fragment:fragment:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation project(':android-opt-bitmap')
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'com.google.guava:guava:27.0.1-android'
+    implementation project(':android-common')
+    implementation 'com.googlecode.owasp-java-html-sanitizer:owasp-java-html-sanitizer:20181114.1'
+}

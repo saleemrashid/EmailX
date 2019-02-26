@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    sourceSets {
+        main {
+            def calendarDir = 'calendar'
+
+            manifest {
+                srcFile 'AndroidManifest.xml'
+            }
+            java {
+                srcDir "${calendarDir}/src"
+            }
+        }
+    }
+}

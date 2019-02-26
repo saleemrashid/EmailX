@@ -1,0 +1,67 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Saleem Rashid <dev@saleemrashid.com>
+Date: Wed, 27 Feb 2019 18:39:48 +0000
+Subject: [PATCH] Use AndroidX
+
+---
+ src/com/android/exchange/adapter/ProvisionParser.java      | 2 +-
+ src/com/android/exchange/eas/EasOperation.java             | 2 +-
+ src/com/android/exchange/eas/EasSync.java                  | 2 +-
+ src/com/android/exchange/service/PingSyncSynchronizer.java | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/com/android/exchange/adapter/ProvisionParser.java b/src/com/android/exchange/adapter/ProvisionParser.java
+index 4888b8d0..cae9ea86 100644
+--- a/src/com/android/exchange/adapter/ProvisionParser.java
++++ b/src/com/android/exchange/adapter/ProvisionParser.java
+@@ -19,7 +19,7 @@ import android.app.admin.DevicePolicyManager;
+ import android.content.Context;
+ import android.content.res.Resources;
+ import android.os.Environment;
+-import android.support.v4.content.ContextCompat;
++import androidx.core.content.ContextCompat;
+ 
+ import com.android.emailcommon.provider.Policy;
+ import com.android.emailcommon.service.PolicyServiceProxy;
+diff --git a/src/com/android/exchange/eas/EasOperation.java b/src/com/android/exchange/eas/EasOperation.java
+index c6330506..e3a1bdfc 100644
+--- a/src/com/android/exchange/eas/EasOperation.java
++++ b/src/com/android/exchange/eas/EasOperation.java
+@@ -24,7 +24,7 @@ import android.content.SyncResult;
+ import android.net.Uri;
+ import android.os.Build;
+ import android.os.Bundle;
+-import android.support.annotation.NonNull;
++import androidx.annotation.NonNull;
+ import android.telephony.TelephonyManager;
+ import android.text.TextUtils;
+ import android.text.format.DateUtils;
+diff --git a/src/com/android/exchange/eas/EasSync.java b/src/com/android/exchange/eas/EasSync.java
+index 39f38bef..0427a888 100644
+--- a/src/com/android/exchange/eas/EasSync.java
++++ b/src/com/android/exchange/eas/EasSync.java
+@@ -20,7 +20,7 @@ import android.content.ContentResolver;
+ import android.content.ContentUris;
+ import android.content.Context;
+ import android.database.Cursor;
+-import android.support.v4.util.LongSparseArray;
++import androidx.collection.LongSparseArray;
+ import android.text.TextUtils;
+ import android.text.format.DateUtils;
+ 
+diff --git a/src/com/android/exchange/service/PingSyncSynchronizer.java b/src/com/android/exchange/service/PingSyncSynchronizer.java
+index f722e865..8cc4ae86 100644
+--- a/src/com/android/exchange/service/PingSyncSynchronizer.java
++++ b/src/com/android/exchange/service/PingSyncSynchronizer.java
+@@ -24,7 +24,7 @@ import android.content.Context;
+ import android.content.Intent;
+ import android.os.Bundle;
+ import android.os.SystemClock;
+-import android.support.v4.util.LongSparseArray;
++import androidx.collection.LongSparseArray;
+ import android.text.format.DateUtils;
+ 
+ import com.android.emailcommon.provider.Account;
+-- 
+2.21.0
+

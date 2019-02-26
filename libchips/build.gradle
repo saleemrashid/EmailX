@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    lintOptions {
+        ignore 'NewApi'
+
+        ignore 'MissingTranslation'
+    }
+    sourceSets {
+        main {
+            def chipsDir = 'chips'
+
+            manifest {
+                srcFile 'AndroidManifest.xml'
+            }
+            java {
+                srcDir "${chipsDir}/src"
+            }
+            res {
+                srcDir "${chipsDir}/res"
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.0.0'
+    implementation 'androidx.core:core:1.0.0'
+}

@@ -1,0 +1,33 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+    lintOptions {
+        ignore 'MissingPermission'
+    }
+    sourceSets {
+        main {
+            def emailcommonDir = registerRewriteTask("${project(':Email').projectDir}/Email/emailcommon")
+
+            manifest {
+                srcFile 'AndroidManifest.xml'
+            }
+            aidl {
+                srcDir "${emailcommonDir}/src"
+            }
+            java {
+                srcDir "${emailcommonDir}/src"
+            }
+            res {
+                srcDir "${emailcommonDir}/res"
+            }
+        }
+    }
+    useLibrary 'org.apache.http.legacy'
+}
+
+dependencies {
+    implementation project(':UnifiedEmail')
+    implementation 'androidx.collection:collection:1.0.0'
+    implementation 'com.google.guava:guava:27.0.1-android'
+}

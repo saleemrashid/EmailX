@@ -1,0 +1,24 @@
+[submodule "frameworks/ex"]
+	path = android-common/ex
+	url = https://android.googlesource.com/platform/frameworks/ex.git
+[submodule "frameworks/opt/bitmap"]
+	path = android-opt-bitmap/bitmap
+	url = https://android.googlesource.com/platform/frameworks/opt/bitmap.git
+[submodule "frameworks/opt/calendar"]
+	path = calendar-common/calendar
+	url = https://android.googlesource.com/platform/frameworks/opt/calendar.git
+[submodule "frameworks/opt/chips"]
+	path = libchips/chips
+	url = https://android.googlesource.com/platform/frameworks/opt/chips.git
+[submodule "frameworks/opt/photoviewer"]
+	path = libphotoviewer_appcompat/photoviewer
+	url = https://android.googlesource.com/platform/frameworks/opt/photoviewer.git
+[submodule "packages/apps/Email"]
+	path = Email/Email
+	url = https://android.googlesource.com/platform/packages/apps/Email
+[submodule "packages/apps/Exchange"]
+	path = Exchange2/Exchange
+	url = https://android.googlesource.com/platform/packages/apps/Exchange.git
+[submodule "packages/apps/UnifiedEmail"]
+	path = UnifiedEmail/UnifiedEmail
+	url = https://android.googlesource.com/platform/packages/apps/UnifiedEmail
