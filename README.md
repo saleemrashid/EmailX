@@ -18,6 +18,17 @@ Includes patches for privacy improvements, bug fixes, and new features:
 
  * Implemented support for multiple OAuth providers
 
+## Gmail Support
+
+In order to use Google Accounts (e.g. Gmail and G Suite), without enabling the
+"Allow less secure apps" option, you must include an OAuth2 provider definition
+in `Email/Email/res/xml/oauth.xml`.
+
+OAuth2 provider definitions for a wide variety of services can be found by
+extracting `res/xml/oauth.xml` from a recent copy of the Gmail APK. This has
+the advantage of classifying the client as an official Google application,
+rather than a third-party OAuth2 application.
+
 ## Building
 
 1. Download the repositories from AOSP
