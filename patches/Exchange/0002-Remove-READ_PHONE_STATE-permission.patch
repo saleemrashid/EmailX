@@ -1,0 +1,82 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Saleem Rashid <dev@saleemrashid.com>
+Date: Wed, 27 Feb 2019 18:39:48 +0000
+Subject: [PATCH] Remove READ_PHONE_STATE permission
+
+---
+ AndroidManifest.xml                           |  2 --
+ .../android/exchange/eas/EasOperation.java    | 32 ++-----------------
+ 2 files changed, 3 insertions(+), 31 deletions(-)
+
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index f401d650..4314cbd0 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -54,8 +54,6 @@
+     <!-- Only required if a store implements push mail and needs to keep network open -->
+     <uses-permission
+         android:name="android.permission.WAKE_LOCK"/>
+-    <uses-permission
+-        android:name="android.permission.READ_PHONE_STATE"/>
+ 
+     <uses-permission
+         android:name="com.android.email.permission.READ_ATTACHMENT"/>
+diff --git a/src/com/android/exchange/eas/EasOperation.java b/src/com/android/exchange/eas/EasOperation.java
+index e3a1bdfc..88f12ebd 100644
+--- a/src/com/android/exchange/eas/EasOperation.java
++++ b/src/com/android/exchange/eas/EasOperation.java
+@@ -25,7 +25,6 @@ import android.net.Uri;
+ import android.os.Build;
+ import android.os.Bundle;
+ import androidx.annotation.NonNull;
+-import android.telephony.TelephonyManager;
+ import android.text.TextUtils;
+ import android.text.format.DateUtils;
+ 
+@@ -604,40 +603,15 @@ public abstract class EasOperation {
+      */
+     protected static void expandedAddDeviceInformationToSerializer(final Serializer s,
+             final Context context, final String userAgent) throws IOException {
+-        final String deviceId;
+-        final String phoneNumber;
+-        final String operator;
+-        final TelephonyManager tm = (TelephonyManager)context.getSystemService(
+-                Context.TELEPHONY_SERVICE);
+-        if (tm != null) {
+-            deviceId = tm.getDeviceId();
+-            phoneNumber = tm.getLine1Number();
+-            // TODO: This is not perfect and needs to be improved, for at least two reasons:
+-            // 1) SIM cards can override this name.
+-            // 2) We don't resend this info to the server when we change networks.
+-            final String operatorName = tm.getNetworkOperatorName();
+-            final String operatorNumber = tm.getNetworkOperator();
+-            if (!TextUtils.isEmpty(operatorName) && !TextUtils.isEmpty(operatorNumber)) {
+-                operator = operatorName + " (" + operatorNumber + ")";
+-            } else if (!TextUtils.isEmpty(operatorName)) {
+-                operator = operatorName;
+-            } else {
+-                operator = operatorNumber;
+-            }
+-        } else {
+-            deviceId = null;
+-            phoneNumber = null;
+-            operator = null;
+-        }
++        final String deviceId = null;
++        final String phoneNumber = null;
++        final String operator = null;
+ 
+         // TODO: Right now, we won't send this information unless the device is provisioned again.
+         // Potentially, this means that our phone number could be out of date if the user
+         // switches sims. Is there something we can do to force a reprovision?
+         s.start(Tags.SETTINGS_DEVICE_INFORMATION).start(Tags.SETTINGS_SET);
+         s.data(Tags.SETTINGS_MODEL, Build.MODEL);
+-        if (deviceId != null) {
+-            s.data(Tags.SETTINGS_IMEI, tm.getDeviceId());
+-        }
+         // Set the device friendly name, if we have one.
+         // TODO: Longer term, this should be done without a provider call.
+         final Bundle deviceName = context.getContentResolver().call(
+-- 
+2.21.0
+

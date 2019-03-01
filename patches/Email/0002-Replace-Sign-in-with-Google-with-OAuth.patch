@@ -1,0 +1,1089 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Saleem Rashid <dev@saleemrashid.com>
+Date: Wed, 27 Feb 2019 18:37:22 +0000
+Subject: [PATCH] Replace "Sign in with Google" with OAuth
+
+---
+ res/layout/account_setup_credentials_fragment.xml | 2 +-
+ res/values-af/strings.xml                         | 2 +-
+ res/values-am/strings.xml                         | 2 +-
+ res/values-ar/strings.xml                         | 2 +-
+ res/values-az/strings.xml                         | 2 +-
+ res/values-bg/strings.xml                         | 2 +-
+ res/values-bn/strings.xml                         | 2 +-
+ res/values-ca/strings.xml                         | 2 +-
+ res/values-cs/strings.xml                         | 2 +-
+ res/values-da/strings.xml                         | 2 +-
+ res/values-de/strings.xml                         | 2 +-
+ res/values-el/strings.xml                         | 2 +-
+ res/values-en-rAU/strings.xml                     | 2 +-
+ res/values-en-rGB/strings.xml                     | 2 +-
+ res/values-en-rIN/strings.xml                     | 2 +-
+ res/values-es-rUS/strings.xml                     | 2 +-
+ res/values-es/strings.xml                         | 2 +-
+ res/values-et/strings.xml                         | 2 +-
+ res/values-eu/strings.xml                         | 2 +-
+ res/values-fa/strings.xml                         | 2 +-
+ res/values-fi/strings.xml                         | 2 +-
+ res/values-fr-rCA/strings.xml                     | 2 +-
+ res/values-fr/strings.xml                         | 2 +-
+ res/values-gl/strings.xml                         | 2 +-
+ res/values-gu/strings.xml                         | 2 +-
+ res/values-hi/strings.xml                         | 2 +-
+ res/values-hr/strings.xml                         | 2 +-
+ res/values-hu/strings.xml                         | 2 +-
+ res/values-hy/strings.xml                         | 2 +-
+ res/values-in/strings.xml                         | 2 +-
+ res/values-is/strings.xml                         | 2 +-
+ res/values-it/strings.xml                         | 2 +-
+ res/values-iw/strings.xml                         | 2 +-
+ res/values-ja/strings.xml                         | 2 +-
+ res/values-ka/strings.xml                         | 2 +-
+ res/values-kk/strings.xml                         | 2 +-
+ res/values-km/strings.xml                         | 2 +-
+ res/values-kn/strings.xml                         | 2 +-
+ res/values-ko/strings.xml                         | 2 +-
+ res/values-ky/strings.xml                         | 2 +-
+ res/values-lo/strings.xml                         | 2 +-
+ res/values-lt/strings.xml                         | 2 +-
+ res/values-lv/strings.xml                         | 2 +-
+ res/values-mk/strings.xml                         | 2 +-
+ res/values-ml/strings.xml                         | 2 +-
+ res/values-mn/strings.xml                         | 2 +-
+ res/values-mr/strings.xml                         | 2 +-
+ res/values-ms/strings.xml                         | 2 +-
+ res/values-my/strings.xml                         | 2 +-
+ res/values-nb/strings.xml                         | 2 +-
+ res/values-ne/strings.xml                         | 2 +-
+ res/values-nl/strings.xml                         | 2 +-
+ res/values-pl/strings.xml                         | 2 +-
+ res/values-pt-rPT/strings.xml                     | 2 +-
+ res/values-pt/strings.xml                         | 2 +-
+ res/values-ro/strings.xml                         | 2 +-
+ res/values-ru/strings.xml                         | 2 +-
+ res/values-si/strings.xml                         | 2 +-
+ res/values-sk/strings.xml                         | 2 +-
+ res/values-sl/strings.xml                         | 2 +-
+ res/values-sr/strings.xml                         | 2 +-
+ res/values-sv/strings.xml                         | 2 +-
+ res/values-sw/strings.xml                         | 2 +-
+ res/values-ta/strings.xml                         | 2 +-
+ res/values-te/strings.xml                         | 2 +-
+ res/values-th/strings.xml                         | 2 +-
+ res/values-tl/strings.xml                         | 2 +-
+ res/values-tr/strings.xml                         | 2 +-
+ res/values-uk/strings.xml                         | 2 +-
+ res/values-ur/strings.xml                         | 2 +-
+ res/values-uz/strings.xml                         | 2 +-
+ res/values-vi/strings.xml                         | 2 +-
+ res/values-zh-rCN/strings.xml                     | 2 +-
+ res/values-zh-rHK/strings.xml                     | 2 +-
+ res/values-zh-rTW/strings.xml                     | 2 +-
+ res/values-zu/strings.xml                         | 2 +-
+ res/values/strings.xml                            | 2 +-
+ 77 files changed, 77 insertions(+), 77 deletions(-)
+
+diff --git a/res/layout/account_setup_credentials_fragment.xml b/res/layout/account_setup_credentials_fragment.xml
+index 6a02df1fb..01687c60f 100644
+--- a/res/layout/account_setup_credentials_fragment.xml
++++ b/res/layout/account_setup_credentials_fragment.xml
+@@ -80,7 +80,7 @@
+                 android:layout_height="wrap_content"/>
+         <Button
+                 android:id="@+id/sign_in_with_oauth"
+-                android:text="@string/sign_in_with_google"
++                android:text="@string/sign_in_with_oauth"
+                 android:layout_gravity="center"
+                 android:layout_width="wrap_content"
+                 android:paddingLeft="20dp"
+diff --git a/res/values-af/strings.xml b/res/values-af/strings.xml
+index 410317205..6d7668da5 100644
+--- a/res/values-af/strings.xml
++++ b/res/values-af/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Jy kan jou rekening in net \'n paar stappe opstel."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-posadres"</string>
+     <string name="or_label" msgid="6408695162723653446">"OF"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Meld aan met Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Meld aan met OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"WAGWOORD"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Wagwoord"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Aangemeld met %s"</string>
+diff --git a/res/values-am/strings.xml b/res/values-am/strings.xml
+index 153152fd8..a2ef79cec 100644
+--- a/res/values-am/strings.xml
++++ b/res/values-am/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"መለያዎን በጥቂት ደረጃዎች ብቻ ማዋቀር ይችላሉ።"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ኢሜይል አድራሻ"</string>
+     <string name="or_label" msgid="6408695162723653446">"ወይም"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"በGoogle ይግቡ"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"በOAuth ይግቡ"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"የይለፍ ቃል"</string>
+     <string name="password_hint" msgid="4226682910292828279">"የይለፍ ቃል"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"በ%s ወደ መለያ ተገብቷል"</string>
+diff --git a/res/values-ar/strings.xml b/res/values-ar/strings.xml
+index da06caf69..4fe5319dd 100644
+--- a/res/values-ar/strings.xml
++++ b/res/values-ar/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"يمكنك إعداد حسابك من خلال اتباع خطوات قليلة."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"عنوان البريد الإلكتروني"</string>
+     <string name="or_label" msgid="6408695162723653446">"أو"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"‏تسجيل الدخول بحساب Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"‏تسجيل الدخول بحساب OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"كلمة المرور"</string>
+     <string name="password_hint" msgid="4226682910292828279">"كلمة المرور"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"‏تم تسجيل الدخول باستخدام %s"</string>
+diff --git a/res/values-az/strings.xml b/res/values-az/strings.xml
+index 81c2bbe22..e9e6228fd 100644
+--- a/res/values-az/strings.xml
++++ b/res/values-az/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Sadəcə bir neçə addımda hesabınızı quraşdıra bilərsiniz."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-poçt ünvanı"</string>
+     <string name="or_label" msgid="6408695162723653446">"VƏ YA"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google ilə daxil olun"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth ilə daxil olun"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PAROL"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Parol"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s ilə daxil olunub"</string>
+diff --git a/res/values-bg/strings.xml b/res/values-bg/strings.xml
+index a5c6901c2..2c135d410 100644
+--- a/res/values-bg/strings.xml
++++ b/res/values-bg/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Можете да настроите профила си само с няколко стъпки."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Имейл адрес"</string>
+     <string name="or_label" msgid="6408695162723653446">"ИЛИ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Вход с Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Вход с OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ПАРОЛА"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Парола"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Влезли сте със: %s"</string>
+diff --git a/res/values-bn/strings.xml b/res/values-bn/strings.xml
+index fdb9f526c..b1c0689fd 100644
+--- a/res/values-bn/strings.xml
++++ b/res/values-bn/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"আপনি মাত্র কয়েকটি ধাপে আপনার অ্যাকাউন্ট সেট আপ করতে পারবেন।"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ইমেল ঠিকানা"</string>
+     <string name="or_label" msgid="6408695162723653446">"অথবা"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google এর মাধ্যমে সাইন ইন করুন"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth এর মাধ্যমে সাইন ইন করুন"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"পাসওয়ার্ড"</string>
+     <string name="password_hint" msgid="4226682910292828279">"পাসওয়ার্ড"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s দিয়ে সাইন ইন করা হয়েছে"</string>
+diff --git a/res/values-ca/strings.xml b/res/values-ca/strings.xml
+index 3a9a591ca..02fb08011 100644
+--- a/res/values-ca/strings.xml
++++ b/res/values-ca/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Pots configurar el teu compte en només un quants passos."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Adreça electrònica"</string>
+     <string name="or_label" msgid="6408695162723653446">"O BÉ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Inicia la sessió amb Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Inicia la sessió amb OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"CONTRASENYA"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Contrasenya"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Sessió iniciada amb %s"</string>
+diff --git a/res/values-cs/strings.xml b/res/values-cs/strings.xml
+index 891919d5f..778f483cf 100644
+--- a/res/values-cs/strings.xml
++++ b/res/values-cs/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Účet můžete nakonfigurovat v několika snadných krocích."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-mailová adresa"</string>
+     <string name="or_label" msgid="6408695162723653446">"NEBO"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Přihlášení k účtu Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Přihlášení k účtu OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"HESLO"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Heslo"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Jste přihlášeni pomocí služby %s"</string>
+diff --git a/res/values-da/strings.xml b/res/values-da/strings.xml
+index 5ccc1ba85..5a2fdd9ca 100644
+--- a/res/values-da/strings.xml
++++ b/res/values-da/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Du kan nemt og hurtigt konfigurere din konto."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-mailadresse"</string>
+     <string name="or_label" msgid="6408695162723653446">"ELLER"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Log ind med Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Log ind med OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ADGANGSKODE"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Adgangskode"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Logget ind med %s"</string>
+diff --git a/res/values-de/strings.xml b/res/values-de/strings.xml
+index e4c4dfdf7..bdf42b770 100644
+--- a/res/values-de/strings.xml
++++ b/res/values-de/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Sie können Ihr Konto in wenigen Schritten einrichten."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-Mail-Adresse"</string>
+     <string name="or_label" msgid="6408695162723653446">"oder"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Über Google anmelden"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Über OAuth anmelden"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"Passwort"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Passwort"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Angemeldet mit %s"</string>
+diff --git a/res/values-el/strings.xml b/res/values-el/strings.xml
+index 543c41506..9dc11a5f8 100644
+--- a/res/values-el/strings.xml
++++ b/res/values-el/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Μπορείτε να ρυθμίσετε τον λογαριασμό σας σε λίγα μόλις βήματα."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Διεύθυνση ηλεκτρονικού ταχυδρομείου"</string>
+     <string name="or_label" msgid="6408695162723653446">"Ή"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Σύνδεση με το Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Σύνδεση με το OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ΚΩΔΙΚΟΣ ΠΡΟΣΒΑΣΗΣ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Κωδικός πρόσβασης"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Συνδέθηκε με %s"</string>
+diff --git a/res/values-en-rAU/strings.xml b/res/values-en-rAU/strings.xml
+index 6be69ec2c..65991ceb6 100644
+--- a/res/values-en-rAU/strings.xml
++++ b/res/values-en-rAU/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"You can set up your account in just a few steps."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Email address"</string>
+     <string name="or_label" msgid="6408695162723653446">"OR"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Sign in with Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Sign in with OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PASSWORD"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Password"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Signed in with %s"</string>
+diff --git a/res/values-en-rGB/strings.xml b/res/values-en-rGB/strings.xml
+index 6be69ec2c..65991ceb6 100644
+--- a/res/values-en-rGB/strings.xml
++++ b/res/values-en-rGB/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"You can set up your account in just a few steps."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Email address"</string>
+     <string name="or_label" msgid="6408695162723653446">"OR"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Sign in with Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Sign in with OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PASSWORD"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Password"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Signed in with %s"</string>
+diff --git a/res/values-en-rIN/strings.xml b/res/values-en-rIN/strings.xml
+index 6be69ec2c..65991ceb6 100644
+--- a/res/values-en-rIN/strings.xml
++++ b/res/values-en-rIN/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"You can set up your account in just a few steps."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Email address"</string>
+     <string name="or_label" msgid="6408695162723653446">"OR"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Sign in with Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Sign in with OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PASSWORD"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Password"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Signed in with %s"</string>
+diff --git a/res/values-es-rUS/strings.xml b/res/values-es-rUS/strings.xml
+index d9caaeda9..a000a717e 100644
+--- a/res/values-es-rUS/strings.xml
++++ b/res/values-es-rUS/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Puedes configurar tu cuenta en pocos pasos."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Dirección de correo"</string>
+     <string name="or_label" msgid="6408695162723653446">"O también puedes hacer lo siguiente:"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Acceder con Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Acceder con OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"CONTRASEÑA"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Contraseña"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Acceso con %s"</string>
+diff --git a/res/values-es/strings.xml b/res/values-es/strings.xml
+index b502df1d1..73435a08e 100644
+--- a/res/values-es/strings.xml
++++ b/res/values-es/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Puedes configurar tu cuenta en pocos pasos."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Dirección de correo electrónico"</string>
+     <string name="or_label" msgid="6408695162723653446">"O"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Iniciar sesión con Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Iniciar sesión con OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"CONTRASEÑA"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Contraseña"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Has iniciado sesión con %s"</string>
+diff --git a/res/values-et/strings.xml b/res/values-et/strings.xml
+index c8f4bf0a7..b4d1d7fbb 100644
+--- a/res/values-et/strings.xml
++++ b/res/values-et/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Seadistage oma konto vaid mõne sammuga."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-posti aadress"</string>
+     <string name="or_label" msgid="6408695162723653446">"VÕI"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Sisselogimine Google\'i kontoga"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Sisselogimine OAuth\'i kontoga"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PAROOL"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Parool"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Logitud sisse teenusega %s"</string>
+diff --git a/res/values-eu/strings.xml b/res/values-eu/strings.xml
+index 61836c76f..f2633e721 100644
+--- a/res/values-eu/strings.xml
++++ b/res/values-eu/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Kontua urrats gutxitan konfigura dezakezu."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Helbide elektronikoa"</string>
+     <string name="or_label" msgid="6408695162723653446">"EDO"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Hasi saioa Google-n"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Hasi saioa OAuth-n"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PASAHITZA"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Pasahitza"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s zerbitzuarekin hasi duzu saioa"</string>
+diff --git a/res/values-fa/strings.xml b/res/values-fa/strings.xml
+index 420edfd19..21bd7bccf 100644
+--- a/res/values-fa/strings.xml
++++ b/res/values-fa/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"می‌توانید حسابتان را در چند گام کوتاه راه‌اندازی کنید."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"آدرس ایمیل"</string>
+     <string name="or_label" msgid="6408695162723653446">"یا"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"‏ورود به سیستم با Google‎"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"‏ورود به سیستم با OAuth‎"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"گذرواژه"</string>
+     <string name="password_hint" msgid="4226682910292828279">"گذرواژه"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"‏وارد شده به سیستم با %s"</string>
+diff --git a/res/values-fi/strings.xml b/res/values-fi/strings.xml
+index 7ffc14424..4fd862896 100644
+--- a/res/values-fi/strings.xml
++++ b/res/values-fi/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Tilisi asetuksien määrittäminen käy helposti muutaman vaiheen kautta."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Sähköpostiosoite"</string>
+     <string name="or_label" msgid="6408695162723653446">"TAI"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Kirjaudu Google-tiliin"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Kirjaudu OAuth-tiliin"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"SALASANA"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Salasana"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Kirjautunut palveluun %s"</string>
+diff --git a/res/values-fr-rCA/strings.xml b/res/values-fr-rCA/strings.xml
+index a48284fff..e06fb677a 100644
+--- a/res/values-fr-rCA/strings.xml
++++ b/res/values-fr-rCA/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Vous pouvez configurer votre compte en quelques étapes seulement."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Adresse de courriel"</string>
+     <string name="or_label" msgid="6408695162723653446">"OU"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Se connecter avec Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Se connecter avec OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"MOT DE PASSE"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Mot de passe"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Connecté en tant que %s"</string>
+diff --git a/res/values-fr/strings.xml b/res/values-fr/strings.xml
+index 07c10f961..888ac2630 100644
+--- a/res/values-fr/strings.xml
++++ b/res/values-fr/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Quelques étapes suffisent pour configurer votre compte."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Adresse e-mail"</string>
+     <string name="or_label" msgid="6408695162723653446">"OU"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Se connecter avec Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Se connecter avec OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"MOT DE PASSE"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Mot de passe"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Connecté en tant que %s"</string>
+diff --git a/res/values-gl/strings.xml b/res/values-gl/strings.xml
+index a40582495..2b2c27249 100644
+--- a/res/values-gl/strings.xml
++++ b/res/values-gl/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Podes configurar a túa conta en poucos pasos."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Enderezo de correo electrónico"</string>
+     <string name="or_label" msgid="6408695162723653446">"OU"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Iniciar sesión con Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Iniciar sesión con OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"CONTRASINAL"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Contrasinal"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Iniciaches sesión con %s"</string>
+diff --git a/res/values-gu/strings.xml b/res/values-gu/strings.xml
+index 8d8801407..dc87cbf21 100644
+--- a/res/values-gu/strings.xml
++++ b/res/values-gu/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"તમે માત્ર થોડા પગલાંઓમાં તમારા એકાઉન્ટને સેટ કરી શકો છો."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ઇમેઇલ સરનામું"</string>
+     <string name="or_label" msgid="6408695162723653446">"અથવા"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google માં સાઇન ઇન કરો"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth માં સાઇન ઇન કરો"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"પાસવર્ડ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"પાસવર્ડ"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s સાથે સાઇન ઇન કર્યું"</string>
+diff --git a/res/values-hi/strings.xml b/res/values-hi/strings.xml
+index c7d08d884..622e2a8de 100644
+--- a/res/values-hi/strings.xml
++++ b/res/values-hi/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"आप बस कुछ ही चरणों में अपना खाता सेट कर सकते हैं."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ईमेल पता"</string>
+     <string name="or_label" msgid="6408695162723653446">"या"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google से प्रवेश करें"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth से प्रवेश करें"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"पासवर्ड"</string>
+     <string name="password_hint" msgid="4226682910292828279">"पासवर्ड"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s के साथ प्रवेश किया"</string>
+diff --git a/res/values-hr/strings.xml b/res/values-hr/strings.xml
+index 6bd57ea3f..958129131 100644
+--- a/res/values-hr/strings.xml
++++ b/res/values-hr/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Možete postaviti svoj korisnički račun u samo nekoliko koraka."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Adresa e-pošte"</string>
+     <string name="or_label" msgid="6408695162723653446">"ILI"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Prijava putem Googlea"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Prijava putem OAutha"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ZAPORKA"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Zaporka"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Prijavljeni ste na uslugu %s"</string>
+diff --git a/res/values-hu/strings.xml b/res/values-hu/strings.xml
+index 7021828fb..83cb728f7 100644
+--- a/res/values-hu/strings.xml
++++ b/res/values-hu/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Mindössze néhány lépésben létrehozhatja fiókját."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-mail cím"</string>
+     <string name="or_label" msgid="6408695162723653446">"VAGY"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Bejelentkezés Google-fiókkal"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Bejelentkezés OAuth-fiókkal"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"JELSZÓ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Jelszó"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Bejelentkezve a következővel: %s"</string>
+diff --git a/res/values-hy/strings.xml b/res/values-hy/strings.xml
+index 8a3d054eb..76efb5802 100644
+--- a/res/values-hy/strings.xml
++++ b/res/values-hy/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Դուք կարող եք կարգավորել ձեր հաշիվը ընդամենը մի քանի քայլով:"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Էլփոստի հասցե"</string>
+     <string name="or_label" msgid="6408695162723653446">"ԿԱՄ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Մուտք գործել Google-ով"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Մուտք գործել OAuth-ով"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ԳԱՂՏՆԱԲԱՌ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Գաղտնաբառ"</string>
+     <!-- String.format failed for translation -->
+diff --git a/res/values-in/strings.xml b/res/values-in/strings.xml
+index fb3cce79e..272af2282 100644
+--- a/res/values-in/strings.xml
++++ b/res/values-in/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Anda dapat menyiapkan akun hanya dalam beberapa langkah."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Alamat email"</string>
+     <string name="or_label" msgid="6408695162723653446">"ATAU"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Masuk dengan Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Masuk dengan OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"SANDI"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Sandi"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Masuk dengan %s"</string>
+diff --git a/res/values-is/strings.xml b/res/values-is/strings.xml
+index 854728d0c..7a0be5d2d 100644
+--- a/res/values-is/strings.xml
++++ b/res/values-is/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Þú getur sett upp reikninginn þinn í örfáum skrefum."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Netfang"</string>
+     <string name="or_label" msgid="6408695162723653446">"EÐA"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Skrá inn með Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Skrá inn með OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"AÐGANGSORÐ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Aðgangsorð"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Skráð(ur) inn með %s"</string>
+diff --git a/res/values-it/strings.xml b/res/values-it/strings.xml
+index 3d679a553..196cfe143 100644
+--- a/res/values-it/strings.xml
++++ b/res/values-it/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Puoi configurare il tuo account in pochi passaggi."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Indirizzo email"</string>
+     <string name="or_label" msgid="6408695162723653446">"O"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Accedi con Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Accedi con OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PASSWORD"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Password"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Accesso eseguito con %s"</string>
+diff --git a/res/values-iw/strings.xml b/res/values-iw/strings.xml
+index 962576b57..39d7c6573 100644
+--- a/res/values-iw/strings.xml
++++ b/res/values-iw/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"ניתן להגדיר את החשבון במספר פעולות פשוטות."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"כתובת אימייל"</string>
+     <string name="or_label" msgid="6408695162723653446">"או"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"‏היכנס באמצעות Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"‏היכנס באמצעות OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"סיסמה"</string>
+     <string name="password_hint" msgid="4226682910292828279">"סיסמה"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"‏מחובר באמצעות ‎%s‎"</string>
+diff --git a/res/values-ja/strings.xml b/res/values-ja/strings.xml
+index 3abcf3514..2e98f3d19 100644
+--- a/res/values-ja/strings.xml
++++ b/res/values-ja/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"簡単な手順でアカウントをセットアップしていただけます。"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"メールアドレス"</string>
+     <string name="or_label" msgid="6408695162723653446">"または"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Googleにログイン"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuthにログイン"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"パスワード"</string>
+     <string name="password_hint" msgid="4226682910292828279">"パスワード"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%sでログイン済み"</string>
+diff --git a/res/values-ka/strings.xml b/res/values-ka/strings.xml
+index 7559c5f34..e17f07ec6 100644
+--- a/res/values-ka/strings.xml
++++ b/res/values-ka/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"თქვენ შეგიძლიათ ანგარიშის დაყენება რამდენიმე მარტივი მოქმედებით."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ელფოსტის მისამართი"</string>
+     <string name="or_label" msgid="6408695162723653446">"OR"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google-ით შესვლა"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth-ით შესვლა"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"პაროლი"</string>
+     <string name="password_hint" msgid="4226682910292828279">"პაროლი"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"შესულია %s-ით"</string>
+diff --git a/res/values-kk/strings.xml b/res/values-kk/strings.xml
+index c54429a20..3eedd1085 100644
+--- a/res/values-kk/strings.xml
++++ b/res/values-kk/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Есептік жазбаны бар болғаны бірнеше қадаммен реттей аласыз."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Электрондық пошта мекенжайы"</string>
+     <string name="or_label" msgid="6408695162723653446">"НЕМЕСЕ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google арқылы кіру"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth арқылы кіру"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ҚҰПИЯ СӨЗ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Құпия сөз"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s арқылы кірді"</string>
+diff --git a/res/values-km/strings.xml b/res/values-km/strings.xml
+index 4215c4313..2fa2ab6ff 100644
+--- a/res/values-km/strings.xml
++++ b/res/values-km/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"អ្នក​អាច​រៀប​ចំ​គណនី​របស់​អ្នក​ដោយ​ពីរ​បី​ជំហាន​ប៉ុណ្ណោះ។"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"អាសយដ្ឋាន​អ៊ីមែល"</string>
+     <string name="or_label" msgid="6408695162723653446">"ឬ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"ចូល​ដោយ​ប្រើ​ Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"ចូល​ដោយ​ប្រើ​ OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ពាក្យសម្ងាត់"</string>
+     <string name="password_hint" msgid="4226682910292828279">"ពាក្យសម្ងាត់"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"បាន​ចូល​​ជា​មួយ %s"</string>
+diff --git a/res/values-kn/strings.xml b/res/values-kn/strings.xml
+index c2df5627e..f53d44dde 100644
+--- a/res/values-kn/strings.xml
++++ b/res/values-kn/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"ನೀವು ಒಂದೆರಡು ಹಂತಗಳಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ಹೊಂದಿಸಬಹುದು."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ಇಮೇಲ್ ವಿಳಾಸ"</string>
+     <string name="or_label" msgid="6408695162723653446">"OR"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google ಜೊತೆ ಸೈನ್ ಇನ್ ಮಾಡಿ"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth ಜೊತೆ ಸೈನ್ ಇನ್ ಮಾಡಿ"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ಪಾಸ್‌ವರ್ಡ್"</string>
+     <string name="password_hint" msgid="4226682910292828279">"ಪಾಸ್‌ವರ್ಡ್"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s ಜೊತೆ ಸೈನ್‍ಇನ್ ಮಾಡಲಾಗಿದೆ"</string>
+diff --git a/res/values-ko/strings.xml b/res/values-ko/strings.xml
+index b892e07af..dfc8781c8 100644
+--- a/res/values-ko/strings.xml
++++ b/res/values-ko/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"간단하게 계정을 설정할 수 있습니다."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"이메일 주소"</string>
+     <string name="or_label" msgid="6408695162723653446">"또는"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google 계정으로 로그인"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth 계정으로 로그인"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"비밀번호"</string>
+     <string name="password_hint" msgid="4226682910292828279">"비밀번호"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s(으)로 로그인함"</string>
+diff --git a/res/values-ky/strings.xml b/res/values-ky/strings.xml
+index 6782e63ef..70be201dc 100644
+--- a/res/values-ky/strings.xml
++++ b/res/values-ky/strings.xml
+@@ -71,7 +71,7 @@
+     <!-- no translation found for account_setup_basics_email_label (8701406783555749929) -->
+     <skip />
+     <string name="or_label" msgid="6408695162723653446">"ЖЕ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google менен кирүү"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth менен кирүү"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"СЫРСӨЗ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Сырсөз"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s менен кирди"</string>
+diff --git a/res/values-lo/strings.xml b/res/values-lo/strings.xml
+index 50f5b4668..89c72139c 100644
+--- a/res/values-lo/strings.xml
++++ b/res/values-lo/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"ທ່ານ​ສາມາດຕິດຕັ້ງ​ບັນຊີ​ໄດ້ໃນພຽງ​ບໍ່ພໍເທົ່າໃດ​ຂັ້ນຕອນ."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ທີ່ຢູ່ອີເມວ"</string>
+     <string name="or_label" msgid="6408695162723653446">"ຫຼື"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"ເຂົ້າສູ່ລະບົບດ້ວຍ Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"ເຂົ້າສູ່ລະບົບດ້ວຍ OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ລະຫັດ​ຜ່ານ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"ລະຫັດ​ຜ່ານ"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"ເຂົ້າສູ່ລະບົບໂດຍໃຊ້ %s"</string>
+diff --git a/res/values-lt/strings.xml b/res/values-lt/strings.xml
+index a575c886b..06d71c1bf 100644
+--- a/res/values-lt/strings.xml
++++ b/res/values-lt/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Galite nustatyti paskyrą atlikę vos kelis veiksmus."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"El. pašto adresas"</string>
+     <string name="or_label" msgid="6408695162723653446">"ARBA"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Prisijungti naudojant „Google“"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Prisijungti naudojant „OAuth“"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"SLAPTAŽODIS"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Slaptažodis"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Prisijungta naudojant „%s“"</string>
+diff --git a/res/values-lv/strings.xml b/res/values-lv/strings.xml
+index b118d82b8..d93ca9b87 100644
+--- a/res/values-lv/strings.xml
++++ b/res/values-lv/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Varat iestatīt savu kontu, veicot tikai dažas darbības."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-pasta adrese"</string>
+     <string name="or_label" msgid="6408695162723653446">"VAI"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Pierakstīties ar Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Pierakstīties ar OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PAROLE"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Parole"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Pierkakstījies šajā kontā: %s"</string>
+diff --git a/res/values-mk/strings.xml b/res/values-mk/strings.xml
+index 578cbaa02..cd9c7b3e8 100644
+--- a/res/values-mk/strings.xml
++++ b/res/values-mk/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Може да ја поставите сметката во само неколку чекори."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Адреса на е-пошта"</string>
+     <string name="or_label" msgid="6408695162723653446">"ИЛИ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Најави се со Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Најави се со OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ЛОЗИНКА"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Лозинка"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Најавен со %s"</string>
+diff --git a/res/values-ml/strings.xml b/res/values-ml/strings.xml
+index 3c08eaf5a..f6243ea3b 100644
+--- a/res/values-ml/strings.xml
++++ b/res/values-ml/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"കുറച്ചുമാത്രം ഘട്ടങ്ങളിലൂടെ നിങ്ങളുടെ അക്കൗണ്ടിനായി ഇമെയിൽ സജ്ജീകരിക്കാനാകും."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ഇമെയിൽ വിലാസം"</string>
+     <string name="or_label" msgid="6408695162723653446">"അല്ലെങ്കിൽ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യുക"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്യുക"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"പാസ്‌വേഡ്"</string>
+     <string name="password_hint" msgid="4226682910292828279">"പാസ്‌വേഡ്"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s ഉപയോഗിച്ച് സൈൻ ഇൻ ചെയ്‌തു"</string>
+diff --git a/res/values-mn/strings.xml b/res/values-mn/strings.xml
+index ce322b5f1..6c7b8ef46 100644
+--- a/res/values-mn/strings.xml
++++ b/res/values-mn/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Та өөрийн акаунтыг ердөө хэдхэн алхамаар тохируулж болно."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Имэйл хаяг"</string>
+     <string name="or_label" msgid="6408695162723653446">"ЭСВЭЛ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google-р нэвтрэх"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth-р нэвтрэх"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"НУУЦ ҮГ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Нууц үг"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s-р нэвтэрсэн"</string>
+diff --git a/res/values-mr/strings.xml b/res/values-mr/strings.xml
+index 52ba8262f..b6b4100b6 100644
+--- a/res/values-mr/strings.xml
++++ b/res/values-mr/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"आपण फक्त थोड्या चरणांमध्ये आपले खाते सेट करू शकता."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ईमेल पत्ता"</string>
+     <string name="or_label" msgid="6408695162723653446">"किंवा"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google सह साइन इन करा"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth सह साइन इन करा"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"संकेतशब्द"</string>
+     <string name="password_hint" msgid="4226682910292828279">"संकेतशब्द"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s सह साइन इन केले"</string>
+diff --git a/res/values-ms/strings.xml b/res/values-ms/strings.xml
+index 5405be8d4..b5c197ed1 100644
+--- a/res/values-ms/strings.xml
++++ b/res/values-ms/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Anda boleh membuat akaun anda dalam hanya beberapa langkah."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Alamat e-mel"</string>
+     <string name="or_label" msgid="6408695162723653446">"ATAU"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Log masuk dengan Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Log masuk dengan OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"KATA LALUAN"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Kata laluan"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Dilog masuk dengan %s"</string>
+diff --git a/res/values-my/strings.xml b/res/values-my/strings.xml
+index d57efdec2..caddd28dc 100644
+--- a/res/values-my/strings.xml
++++ b/res/values-my/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"သင်သည် သင်၏ အကောင့်ကို အဆင့်အနည်းငယ်မျှဖြင့် စသတ်မှတ်နိုင်သည်။"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"အီးမေး လိပ်စာ"</string>
+     <string name="or_label" msgid="6408695162723653446">"သို့မဟုတ်"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google ဖြင့် လက်မှတ် ထိုးဝင်ပါ"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth ဖြင့် လက်မှတ် ထိုးဝင်ပါ"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"စကားဝှက်"</string>
+     <string name="password_hint" msgid="4226682910292828279">"စကားဝှက်"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s ဖြင့် လက်မှတ်ထိုး ၀င်ခဲ့"</string>
+diff --git a/res/values-nb/strings.xml b/res/values-nb/strings.xml
+index 8aa9d3bf6..f31dfa599 100644
+--- a/res/values-nb/strings.xml
++++ b/res/values-nb/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Du kan konfigurere kontoen din i noen få trinn."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-postadresse"</string>
+     <string name="or_label" msgid="6408695162723653446">"ELLER"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Logg på med Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Logg på med OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PASSORD"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Passord"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Logget på med %s"</string>
+diff --git a/res/values-ne/strings.xml b/res/values-ne/strings.xml
+index 5ac3e1d3e..59107ee47 100644
+--- a/res/values-ne/strings.xml
++++ b/res/values-ne/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"तपाईँ केवल केही चरणहरूमा आफ्नो खाता सेट अप गर्न सक्नुहुन्छ।"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"इमेल ठेगाना"</string>
+     <string name="or_label" msgid="6408695162723653446">"अथवा"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google का साथ साइन इन गर्नुहोस्"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth का साथ साइन इन गर्नुहोस्"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"पासवर्ड"</string>
+     <string name="password_hint" msgid="4226682910292828279">"पासवर्ड"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s सँग साइन इन गरिएको"</string>
+diff --git a/res/values-nl/strings.xml b/res/values-nl/strings.xml
+index ffb72f02c..be2ba990c 100644
+--- a/res/values-nl/strings.xml
++++ b/res/values-nl/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Uw account instellen binnen enkele stappen."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-mailadres"</string>
+     <string name="or_label" msgid="6408695162723653446">"OF"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Inloggen met Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Inloggen met OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"WACHTWOORD"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Wachtwoord"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Ingelogd met %s"</string>
+diff --git a/res/values-pl/strings.xml b/res/values-pl/strings.xml
+index 7ed9a0ef8..ca29b1eb8 100644
+--- a/res/values-pl/strings.xml
++++ b/res/values-pl/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Skonfiguruj swoje konto w kilku prostych krokach."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Adres e-mail"</string>
+     <string name="or_label" msgid="6408695162723653446">"LUB"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Zaloguj się przez Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Zaloguj się przez OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"HASŁO"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Hasło"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Jesteś zalogowany w %s"</string>
+diff --git a/res/values-pt-rPT/strings.xml b/res/values-pt-rPT/strings.xml
+index 499711020..c51559221 100644
+--- a/res/values-pt-rPT/strings.xml
++++ b/res/values-pt-rPT/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"É possível configurar a sua conta em apenas alguns passos."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Endereço de email"</string>
+     <string name="or_label" msgid="6408695162723653446">"OU"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Iniciar sessão com o Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Iniciar sessão com o OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PALAVRA-PASSE"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Palavra-passe"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Sessão iniciada com o %s"</string>
+diff --git a/res/values-pt/strings.xml b/res/values-pt/strings.xml
+index 2fb871c99..c66a06d5d 100644
+--- a/res/values-pt/strings.xml
++++ b/res/values-pt/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"É possível configurar uma conta em apenas algumas etapas."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Endereço de e-mail"</string>
+     <string name="or_label" msgid="6408695162723653446">"OU"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Fazer login com o Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Fazer login com o OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"SENHA"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Senha"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Conectado com o %s"</string>
+diff --git a/res/values-ro/strings.xml b/res/values-ro/strings.xml
+index 945967c34..dead88edb 100644
+--- a/res/values-ro/strings.xml
++++ b/res/values-ro/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Vă puteți configura contul în câțiva pași."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Adresă de e-mail"</string>
+     <string name="or_label" msgid="6408695162723653446">"SAU"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Conectați-vă cu Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Conectați-vă cu OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PAROLĂ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Parolă"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Conectat(ă) cu %s"</string>
+diff --git a/res/values-ru/strings.xml b/res/values-ru/strings.xml
+index 3ce754b78..2f4f8565d 100644
+--- a/res/values-ru/strings.xml
++++ b/res/values-ru/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Укажите ваш эл. адрес и пароль"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Адрес электронной почты"</string>
+     <string name="or_label" msgid="6408695162723653446">"ИЛИ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Войти в аккаунт Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Войти в аккаунт OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ПАРОЛЬ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Пароль"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Выполнен вход в аккаунт %s"</string>
+diff --git a/res/values-si/strings.xml b/res/values-si/strings.xml
+index f2c380450..e8eee6c8f 100644
+--- a/res/values-si/strings.xml
++++ b/res/values-si/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"ඔබට පියවර කිහිපයකින් ඔබගේ ගිණුම සකස් කළ හැක."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ඊ-තැපැල් ලිපිනය"</string>
+     <string name="or_label" msgid="6408695162723653446">"හෝ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google සමගින් පුරනය වන්න"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth සමගින් පුරනය වන්න"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"මුරපදය"</string>
+     <string name="password_hint" msgid="4226682910292828279">"මුරපදය"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s සමගින් පුරනය වන ලදි"</string>
+diff --git a/res/values-sk/strings.xml b/res/values-sk/strings.xml
+index 388c822dd..7e68647c2 100644
+--- a/res/values-sk/strings.xml
++++ b/res/values-sk/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Účet si nastavíte v niekoľkých jednoduchých krokoch."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-mailová adresa"</string>
+     <string name="or_label" msgid="6408695162723653446">"ALEBO"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Prihlásiť sa pomocou účtu Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Prihlásiť sa pomocou účtu OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"HESLO"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Heslo"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Prihlásený/-á pomocou účtu %s"</string>
+diff --git a/res/values-sl/strings.xml b/res/values-sl/strings.xml
+index c2fcdac67..6110d78c9 100644
+--- a/res/values-sl/strings.xml
++++ b/res/values-sl/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Račun lahko ustvarite v nekaj korakih."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-poštni naslov"</string>
+     <string name="or_label" msgid="6408695162723653446">"ALI"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Prijava z Google Računom"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Prijava z OAuth Računom"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"GESLO"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Geslo"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Prijava s storitvijo %s"</string>
+diff --git a/res/values-sr/strings.xml b/res/values-sr/strings.xml
+index 734405f14..7e877aa20 100644
+--- a/res/values-sr/strings.xml
++++ b/res/values-sr/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Можете да подесите налог у свега неколико корака."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Имејл адреса"</string>
+     <string name="or_label" msgid="6408695162723653446">"ИЛИ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Пријави ме на Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Пријави ме на OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ЛОЗИНКА"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Лозинка"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Пријављени сте на %s"</string>
+diff --git a/res/values-sv/strings.xml b/res/values-sv/strings.xml
+index 731fad286..8b49beecc 100644
+--- a/res/values-sv/strings.xml
++++ b/res/values-sv/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Du kan konfigurera ditt konto med några få steg."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-postadress"</string>
+     <string name="or_label" msgid="6408695162723653446">"ELLER"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Logga in med Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Logga in med OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"LÖSENORD"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Lösenord"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Inloggad med %s"</string>
+diff --git a/res/values-sw/strings.xml b/res/values-sw/strings.xml
+index 2c641a502..7c95f6927 100644
+--- a/res/values-sw/strings.xml
++++ b/res/values-sw/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Unaweza kufungua akaunti yako kwa hatua chache tu."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Anwani ya barua pepe"</string>
+     <string name="or_label" msgid="6408695162723653446">"AU"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Ingia katika akaunti ukitumia Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Ingia katika akaunti ukitumia OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"NENOSIRI"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Nenosiri"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Umeingia katika akaunti ukitumia %s"</string>
+diff --git a/res/values-ta/strings.xml b/res/values-ta/strings.xml
+index 00f47932f..dd89f2b3c 100644
+--- a/res/values-ta/strings.xml
++++ b/res/values-ta/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"சில படிமுறைகளிலேயே உங்கள் கணக்கை அமைக்கலாம்."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"மின்னஞ்சல் முகவரி"</string>
+     <string name="or_label" msgid="6408695162723653446">"அல்லது"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google மூலம் உள்நுழை"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth மூலம் உள்நுழை"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"கடவுச்சொல்"</string>
+     <string name="password_hint" msgid="4226682910292828279">"கடவுச்சொல்"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s மூலம் உள்நுழைந்தீர்கள்"</string>
+diff --git a/res/values-te/strings.xml b/res/values-te/strings.xml
+index dcdedae86..1e7bcaeb7 100644
+--- a/res/values-te/strings.xml
++++ b/res/values-te/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"మీరు కేవలం కొన్ని దశల్లో మీ ఖాతాను సెటప్ చేయవచ్చు."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ఇమెయిల్ చిరునామా"</string>
+     <string name="or_label" msgid="6408695162723653446">"లేదా"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Googleతో సైన్ ఇన్ చేయండి"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuthతో సైన్ ఇన్ చేయండి"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"పాస్‌వర్డ్"</string>
+     <string name="password_hint" msgid="4226682910292828279">"పాస్‌వర్డ్"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%sతో సైన్ ఇన్ చేసారు"</string>
+diff --git a/res/values-th/strings.xml b/res/values-th/strings.xml
+index 4807aefc1..b62a61b90 100644
+--- a/res/values-th/strings.xml
++++ b/res/values-th/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"คุณสามารถตั้งค่าบัญชีได้ในไม่กี่ขั้นตอน"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ที่อยู่อีเมล"</string>
+     <string name="or_label" msgid="6408695162723653446">"หรือ"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"ลงชื่อเข้าใช้ด้วย Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"ลงชื่อเข้าใช้ด้วย OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"รหัสผ่าน"</string>
+     <string name="password_hint" msgid="4226682910292828279">"รหัสผ่าน"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"ลงชื่อเข้าใช้ด้วย %s"</string>
+diff --git a/res/values-tl/strings.xml b/res/values-tl/strings.xml
+index 40a81dca4..9a27baa8f 100644
+--- a/res/values-tl/strings.xml
++++ b/res/values-tl/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Mase-set up mo ang iyong account sa ilang hakbang lang."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Email address"</string>
+     <string name="or_label" msgid="6408695162723653446">"O KAYA"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Mag-sign in sa Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Mag-sign in sa OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PASSWORD"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Password"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Naka-sign in gamit ang %s"</string>
+diff --git a/res/values-tr/strings.xml b/res/values-tr/strings.xml
+index 5ead543bb..9ccc9c010 100644
+--- a/res/values-tr/strings.xml
++++ b/res/values-tr/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Hesabınızı birkaç adımda oluşturabilirsiniz."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-posta adresi"</string>
+     <string name="or_label" msgid="6408695162723653446">"VEYA"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google ile oturum aç"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth ile oturum aç"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ŞİFRE"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Şifre"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s hizmetinde oturum açıldı"</string>
+diff --git a/res/values-uk/strings.xml b/res/values-uk/strings.xml
+index ec06d5b34..910298d78 100644
+--- a/res/values-uk/strings.xml
++++ b/res/values-uk/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Обліковий запис можна налаштувати за допомогою лише кількох дій."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Електронна адреса"</string>
+     <string name="or_label" msgid="6408695162723653446">"АБО"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Увійти через Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Увійти через OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"ПАРОЛЬ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Пароль"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Ви ввійшли в %s"</string>
+diff --git a/res/values-ur/strings.xml b/res/values-ur/strings.xml
+index 5ee894c6d..572cbcd71 100644
+--- a/res/values-ur/strings.xml
++++ b/res/values-ur/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"آپ صرف چند مراحل میں اپنا اکاؤنٹ سیٹ اپ کر سکتے ہیں۔"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"ای میل پتہ"</string>
+     <string name="or_label" msgid="6408695162723653446">"یا"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"‏Google کے ساتھ سائن ان کریں"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"‏OAuth کے ساتھ سائن ان کریں"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"پاس ورڈ"</string>
+     <string name="password_hint" msgid="4226682910292828279">"پاس ورڈ"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"‏‎%s کے ساتھ سائن ان ہیں"</string>
+diff --git a/res/values-uz/strings.xml b/res/values-uz/strings.xml
+index 24c75fc13..ee0e8c0b1 100644
+--- a/res/values-uz/strings.xml
++++ b/res/values-uz/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"E-pochtangiz manzili va parolini kiriting."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"E-pochta manzili"</string>
+     <string name="or_label" msgid="6408695162723653446">"YOKI"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Google orqali kirish"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"OAuth orqali kirish"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"PAROL"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Parol"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"%s hisobiga kirildi"</string>
+diff --git a/res/values-vi/strings.xml b/res/values-vi/strings.xml
+index 76c2292f8..c24bb9eef 100644
+--- a/res/values-vi/strings.xml
++++ b/res/values-vi/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Bạn có thể thiết lập tài khoản của mình chỉ bằng vài bước."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Địa chỉ email"</string>
+     <string name="or_label" msgid="6408695162723653446">"HOẶC"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Đăng nhập bằng Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Đăng nhập bằng OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"MẬT KHẨU"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Mật khẩu"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Đã đăng nhập bằng %s"</string>
+diff --git a/res/values-zh-rCN/strings.xml b/res/values-zh-rCN/strings.xml
+index 65ab66dda..d08ac8018 100644
+--- a/res/values-zh-rCN/strings.xml
++++ b/res/values-zh-rCN/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"只需几步操作，即可设置好您的帐户。"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"电子邮件地址"</string>
+     <string name="or_label" msgid="6408695162723653446">"或"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"使用Google帐户登录"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"使用OAuth帐户登录"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"密码"</string>
+     <string name="password_hint" msgid="4226682910292828279">"密码"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"已登录%s"</string>
+diff --git a/res/values-zh-rHK/strings.xml b/res/values-zh-rHK/strings.xml
+index e662f8d7d..ddfb23c29 100644
+--- a/res/values-zh-rHK/strings.xml
++++ b/res/values-zh-rHK/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"只要幾個步驟，便可以設定您的帳戶。"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"電郵地址"</string>
+     <string name="or_label" msgid="6408695162723653446">"或"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"使用 Google 帳戶登入"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"使用 OAuth 帳戶登入"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"密碼"</string>
+     <string name="password_hint" msgid="4226682910292828279">"密碼"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"已使用「%s」登入"</string>
+diff --git a/res/values-zh-rTW/strings.xml b/res/values-zh-rTW/strings.xml
+index 99b013e3f..f60d26eec 100644
+--- a/res/values-zh-rTW/strings.xml
++++ b/res/values-zh-rTW/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"只要幾個步驟即可完成帳戶設定。"</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"電子郵件地址"</string>
+     <string name="or_label" msgid="6408695162723653446">"或"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"使用 Google 帳戶登入"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"使用 OAuth 帳戶登入"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"密碼"</string>
+     <string name="password_hint" msgid="4226682910292828279">"密碼"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"已使用「%s」登入"</string>
+diff --git a/res/values-zu/strings.xml b/res/values-zu/strings.xml
+index 08220d47d..f707712c5 100644
+--- a/res/values-zu/strings.xml
++++ b/res/values-zu/strings.xml
+@@ -53,7 +53,7 @@
+     <string name="accounts_welcome" msgid="7230367425520242593">"Ungasetha i-akhawunti yakho ngezinyathelo ezimbalwa."</string>
+     <string name="account_setup_basics_email_label" msgid="8701406783555749929">"Ikheli le-imeyli"</string>
+     <string name="or_label" msgid="6408695162723653446">"NOMA"</string>
+-    <string name="sign_in_with_google" msgid="1412668282326928102">"Ngena ngemvume nge-Google"</string>
++    <string name="sign_in_with_oauth" msgid="1412668282326928102">"Ngena ngemvume nge-OAuth"</string>
+     <string name="account_setup_basics_password_label" msgid="784962388753706730">"IPHASIWEDI"</string>
+     <string name="password_hint" msgid="4226682910292828279">"Iphasiwedi"</string>
+     <string name="signed_in_with_service_label" msgid="4282359206358453634">"Ingene ngemvume nge-%s"</string>
+diff --git a/res/values/strings.xml b/res/values/strings.xml
+index 2f39425a4..a70613485 100644
+--- a/res/values/strings.xml
++++ b/res/values/strings.xml
+@@ -141,7 +141,7 @@
+     <!-- Label between OAuth and password authentication, indicating the user must do one or the other [CHAR LIMIT=40] -->
+     <string name="or_label">OR</string>
+     <!-- Label for signing in with Google using OAuth -->
+-    <string name="sign_in_with_google">Sign in with Google</string>
++    <string name="sign_in_with_oauth">Sign in with OAuth</string>
+     <!-- On "Set up email" screen, hint for account email password text field, should be uppercase where applicable -->
+     <string name="account_setup_basics_password_label">PASSWORD</string>
+     <!-- hint for account email password text field -->
+-- 
+2.21.0
+

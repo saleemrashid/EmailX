@@ -1,0 +1,25 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Saleem Rashid <dev@saleemrashid.com>
+Date: Thu, 28 Feb 2019 17:42:15 +0000
+Subject: [PATCH] Use UnifiedEmail icon
+
+---
+ AndroidManifest.xml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index 4314cbd0..a229a8e2 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -65,7 +65,7 @@
+     <!-- additional uses -->
+ 
+     <application
+-        android:icon="@mipmap/icon"
++        android:icon="@mipmap/ic_launcher_mail"
+         android:label="@string/app_name"
+         android:name="Exchange"
+         android:requiredAccountType="com.android.exchange"
+-- 
+2.21.0
+

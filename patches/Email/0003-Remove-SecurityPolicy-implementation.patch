@@ -1,0 +1,261 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Saleem Rashid <dev@saleemrashid.com>
+Date: Thu, 28 Feb 2019 18:06:14 +0000
+Subject: [PATCH] Remove SecurityPolicy implementation
+
+---
+ AndroidManifest.xml                           |  15 --
+ .../com/android/email/SecurityPolicy.java     | 155 +-----------------
+ 2 files changed, 3 insertions(+), 167 deletions(-)
+
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index 0706b8041..6a8f97f24 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -489,21 +489,6 @@
+             android:permission="android.permission.BIND_JOB_SERVICE"
+             android:exported="true" />
+ 
+-        <!-- Support for DeviceAdmin / DevicePolicyManager.  See SecurityPolicy class for impl. -->
+-        <receiver
+-            android:name=".SecurityPolicy$PolicyAdmin"
+-            android:label="@string/device_admin_label"
+-            android:description="@string/device_admin_description"
+-            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+-            <meta-data
+-                android:name="android.app.device_admin"
+-                android:resource="@xml/device_admin" />
+-            <intent-filter>
+-                <action
+-                    android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+-            </intent-filter>
+-        </receiver>
+-
+         <service
+             android:name=".service.AttachmentService"
+             android:enabled="false"
+diff --git a/provider_src/com/android/email/SecurityPolicy.java b/provider_src/com/android/email/SecurityPolicy.java
+index 8418871d4..52223a46e 100644
+--- a/provider_src/com/android/email/SecurityPolicy.java
++++ b/provider_src/com/android/email/SecurityPolicy.java
+@@ -18,7 +18,6 @@ package com.android.email;
+ 
+ import android.app.admin.DeviceAdminInfo;
+ import android.app.admin.DeviceAdminReceiver;
+-import android.app.admin.DevicePolicyManager;
+ import android.content.ComponentName;
+ import android.content.ContentProviderOperation;
+ import android.content.ContentResolver;
+@@ -59,7 +58,6 @@ public class SecurityPolicy {
+     private static final String TAG = "Email";
+     private static SecurityPolicy sInstance = null;
+     private Context mContext;
+-    private DevicePolicyManager mDPM;
+     private final ComponentName mAdminName;
+     private Policy mAggregatePolicy;
+ 
+@@ -87,7 +85,6 @@ public class SecurityPolicy {
+      */
+     private SecurityPolicy(Context context) {
+         mContext = context.getApplicationContext();
+-        mDPM = null;
+         mAdminName = new ComponentName(context, PolicyAdmin.class);
+         mAggregatePolicy = null;
+     }
+@@ -207,16 +204,6 @@ public class SecurityPolicy {
+         return mAggregatePolicy;
+     }
+ 
+-    /**
+-     * Get the dpm.  This mainly allows us to make some utility calls without it, for testing.
+-     */
+-    /* package */ synchronized DevicePolicyManager getDPM() {
+-        if (mDPM == null) {
+-            mDPM = (DevicePolicyManager) mContext.getSystemService(Context.DEVICE_POLICY_SERVICE);
+-        }
+-        return mDPM;
+-    }
+-
+     /**
+      * API: Report that policies may have been updated due to rewriting values in an Account; we
+      * clear the aggregate policy (so it can be recomputed) and set the policies in the DPM
+@@ -317,84 +304,7 @@ public class SecurityPolicy {
+      * is needed (typically, by the user) before the required security polices are fully active.
+      */
+     public int getInactiveReasons(Policy policy) {
+-        // select aggregate set if needed
+-        if (policy == null) {
+-            policy = getAggregatePolicy();
+-        }
+-        // quick check for the "empty set" of no policies
+-        if (policy == Policy.NO_POLICY) {
+-            return 0;
+-        }
+-        int reasons = 0;
+-        DevicePolicyManager dpm = getDPM();
+-        if (isActiveAdmin()) {
+-            // check each policy explicitly
+-            if (policy.mPasswordMinLength > 0) {
+-                if (dpm.getPasswordMinimumLength(mAdminName) < policy.mPasswordMinLength) {
+-                    reasons |= INACTIVE_NEED_PASSWORD;
+-                }
+-            }
+-            if (policy.mPasswordMode > 0) {
+-                if (dpm.getPasswordQuality(mAdminName) < policy.getDPManagerPasswordQuality()) {
+-                    reasons |= INACTIVE_NEED_PASSWORD;
+-                }
+-                if (!dpm.isActivePasswordSufficient()) {
+-                    reasons |= INACTIVE_NEED_PASSWORD;
+-                }
+-            }
+-            if (policy.mMaxScreenLockTime > 0) {
+-                // Note, we use seconds, dpm uses milliseconds
+-                if (dpm.getMaximumTimeToLock(mAdminName) > policy.mMaxScreenLockTime * 1000) {
+-                    reasons |= INACTIVE_NEED_CONFIGURATION;
+-                }
+-            }
+-            if (policy.mPasswordExpirationDays > 0) {
+-                // confirm that expirations are currently set
+-                long currentTimeout = dpm.getPasswordExpirationTimeout(mAdminName);
+-                if (currentTimeout == 0
+-                        || currentTimeout > policy.getDPManagerPasswordExpirationTimeout()) {
+-                    reasons |= INACTIVE_NEED_PASSWORD;
+-                }
+-                // confirm that the current password hasn't expired
+-                long expirationDate = dpm.getPasswordExpiration(mAdminName);
+-                long timeUntilExpiration = expirationDate - System.currentTimeMillis();
+-                boolean expired = timeUntilExpiration < 0;
+-                if (expired) {
+-                    reasons |= INACTIVE_NEED_PASSWORD;
+-                }
+-            }
+-            if (policy.mPasswordHistory > 0) {
+-                if (dpm.getPasswordHistoryLength(mAdminName) < policy.mPasswordHistory) {
+-                    // There's no user action for changes here; this is just a configuration change
+-                    reasons |= INACTIVE_NEED_CONFIGURATION;
+-                }
+-            }
+-            if (policy.mPasswordComplexChars > 0) {
+-                if (dpm.getPasswordMinimumNonLetter(mAdminName) < policy.mPasswordComplexChars) {
+-                    reasons |= INACTIVE_NEED_PASSWORD;
+-                }
+-            }
+-            if (policy.mRequireEncryption) {
+-                int encryptionStatus = getDPM().getStorageEncryptionStatus();
+-                if (encryptionStatus != DevicePolicyManager.ENCRYPTION_STATUS_ACTIVE) {
+-                    reasons |= INACTIVE_NEED_ENCRYPTION;
+-                }
+-            }
+-            if (policy.mDontAllowCamera && !dpm.getCameraDisabled(mAdminName)) {
+-                reasons |= INACTIVE_NEED_CONFIGURATION;
+-            }
+-            // password failures are counted locally - no test required here
+-            // no check required for remote wipe (it's supported, if we're the admin)
+-
+-            if (policy.mProtocolPoliciesUnsupported != null) {
+-                reasons |= INACTIVE_PROTOCOL_POLICIES;
+-            }
+-
+-            // If we made it all the way, reasons == 0 here.  Otherwise it's a list of grievances.
+-            return reasons;
+-        }
+-        // return false, not active
+-        return INACTIVE_NEED_ACTIVATION;
++        return 0;
+     }
+ 
+     /**
+@@ -403,53 +313,6 @@ public class SecurityPolicy {
+      * we only proceed if we are already active as an admin.
+      */
+     public void setActivePolicies() {
+-        DevicePolicyManager dpm = getDPM();
+-        // compute aggregate set of policies
+-        Policy aggregatePolicy = getAggregatePolicy();
+-        // if empty set, detach from policy manager
+-        if (aggregatePolicy == Policy.NO_POLICY) {
+-            if (DebugUtils.DEBUG) {
+-                LogUtils.d(TAG, "setActivePolicies: none, remove admin");
+-            }
+-            dpm.removeActiveAdmin(mAdminName);
+-        } else if (isActiveAdmin()) {
+-            if (DebugUtils.DEBUG) {
+-                LogUtils.d(TAG, "setActivePolicies: " + aggregatePolicy);
+-            }
+-            // set each policy in the policy manager
+-            // password mode & length
+-            dpm.setPasswordQuality(mAdminName, aggregatePolicy.getDPManagerPasswordQuality());
+-            dpm.setPasswordMinimumLength(mAdminName, aggregatePolicy.mPasswordMinLength);
+-            // screen lock time
+-            dpm.setMaximumTimeToLock(mAdminName, aggregatePolicy.mMaxScreenLockTime * 1000);
+-            // local wipe (failed passwords limit)
+-            dpm.setMaximumFailedPasswordsForWipe(mAdminName, aggregatePolicy.mPasswordMaxFails);
+-            // password expiration (days until a password expires).  API takes mSec.
+-            dpm.setPasswordExpirationTimeout(mAdminName,
+-                    aggregatePolicy.getDPManagerPasswordExpirationTimeout());
+-            // password history length (number of previous passwords that may not be reused)
+-            dpm.setPasswordHistoryLength(mAdminName, aggregatePolicy.mPasswordHistory);
+-            // password minimum complex characters.
+-            // Note, in Exchange, "complex chars" simply means "non alpha", but in the DPM,
+-            // setting the quality to complex also defaults min symbols=1 and min numeric=1.
+-            // We always / safely clear minSymbols & minNumeric to zero (there is no policy
+-            // configuration in which we explicitly require a minimum number of digits or symbols.)
+-            dpm.setPasswordMinimumSymbols(mAdminName, 0);
+-            dpm.setPasswordMinimumNumeric(mAdminName, 0);
+-            dpm.setPasswordMinimumNonLetter(mAdminName, aggregatePolicy.mPasswordComplexChars);
+-            // Device capabilities
+-            try {
+-                // If we are running in a managed policy, it is a securityException to even
+-                // call setCameraDisabled(), if is disabled is false. We have to swallow
+-                // the exception here.
+-                dpm.setCameraDisabled(mAdminName, aggregatePolicy.mDontAllowCamera);
+-            } catch (SecurityException e) {
+-                LogUtils.d(TAG, "SecurityException in setCameraDisabled, nothing changed");
+-            }
+-
+-            // encryption required
+-            dpm.setStorageEncryption(mAdminName, aggregatePolicy.mRequireEncryption);
+-        }
+     }
+ 
+     /**
+@@ -677,12 +540,6 @@ public class SecurityPolicy {
+      * return to the caller if there is an unexpected failure.  The wipe includes external storage.
+      */
+     public void remoteWipe() {
+-        DevicePolicyManager dpm = getDPM();
+-        if (dpm.isAdminActive(mAdminName)) {
+-            dpm.wipeData(DevicePolicyManager.WIPE_EXTERNAL_STORAGE);
+-        } else {
+-            LogUtils.d(Logging.LOG_TAG, "Could not remote wipe because not device admin.");
+-        }
+     }
+     /**
+      * If we are not the active device admin, try to become so.
+@@ -694,11 +551,7 @@ public class SecurityPolicy {
+      * @return true if we are already active, false if we are not
+      */
+     public boolean isActiveAdmin() {
+-        DevicePolicyManager dpm = getDPM();
+-        return dpm.isAdminActive(mAdminName)
+-                && dpm.hasGrantedPolicy(mAdminName, DeviceAdminInfo.USES_POLICY_EXPIRE_PASSWORD)
+-                && dpm.hasGrantedPolicy(mAdminName, DeviceAdminInfo.USES_ENCRYPTED_STORAGE)
+-                && dpm.hasGrantedPolicy(mAdminName, DeviceAdminInfo.USES_POLICY_DISABLE_CAMERA);
++        return true;
+     }
+ 
+     /**
+@@ -765,9 +618,7 @@ public class SecurityPolicy {
+         }
+ 
+         // 3.  If yes, are we warning or expired?
+-        long expirationDate = getDPM().getPasswordExpiration(mAdminName);
+-        long timeUntilExpiration = expirationDate - System.currentTimeMillis();
+-        boolean expired = timeUntilExpiration < 0;
++        boolean expired = false;
+         final NotificationController nc =
+                 NotificationControllerCreatorHolder.getInstance(context);
+         if (!expired) {
+-- 
+2.21.0
+

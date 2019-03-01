@@ -1,0 +1,106 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Saleem Rashid <dev@saleemrashid.com>
+Date: Wed, 27 Feb 2019 18:37:21 +0000
+Subject: [PATCH] Remove READ_PHONE_STATE permission
+
+---
+ AndroidManifest.xml                           |  1 -
+ .../src/com/android/emailcommon/Device.java   | 32 +------------------
+ .../android/email/mail/store/ImapStore.java   |  8 +----
+ 3 files changed, 2 insertions(+), 39 deletions(-)
+
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index 9dd32c260..0706b8041 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -43,7 +43,6 @@
+     <uses-permission android:name="android.permission.READ_PROFILE"/>
+     <uses-permission android:name="android.permission.NFC"/>
+     <uses-permission android:name="android.permission.WAKE_LOCK"/>
+-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+ 
+     <!-- This needs to be present when we are doing unbundled releases. -->
+diff --git a/emailcommon/src/com/android/emailcommon/Device.java b/emailcommon/src/com/android/emailcommon/Device.java
+index 9595f0d40..76b6786d5 100644
+--- a/emailcommon/src/com/android/emailcommon/Device.java
++++ b/emailcommon/src/com/android/emailcommon/Device.java
+@@ -18,7 +18,6 @@
+ package com.android.emailcommon;
+ 
+ import android.content.Context;
+-import android.telephony.TelephonyManager;
+ 
+ import com.android.emailcommon.utility.Utility;
+ import com.android.mail.utils.LogUtils;
+@@ -77,38 +76,9 @@ public class Device {
+             }
+         }
+         BufferedWriter w = new BufferedWriter(new FileWriter(f), 128);
+-        final String consistentDeviceId = getConsistentDeviceId(context);
+-        if (consistentDeviceId != null) {
+-            // Use different prefix from random IDs.
+-            id = "androidc" + consistentDeviceId;
+-        } else {
+-            id = "android" + System.currentTimeMillis();
+-        }
++        id = "android" + System.currentTimeMillis();
+         w.write(id);
+         w.close();
+         return id;
+     }
+-
+-    /**
+-     * @return Device's unique ID if available.  null if the device has no unique ID.
+-     */
+-    public static String getConsistentDeviceId(Context context) {
+-        final String deviceId;
+-        try {
+-            TelephonyManager tm =
+-                (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+-            if (tm == null) {
+-                return null;
+-            }
+-            deviceId = tm.getDeviceId();
+-            if (deviceId == null) {
+-                return null;
+-            }
+-        } catch (Exception e) {
+-            LogUtils.d(Logging.LOG_TAG, "Error in TelephonyManager.getDeviceId(): "
+-                    + e.getMessage());
+-            return null;
+-        }
+-        return Utility.getSmallHash(deviceId);
+-    }
+ }
+diff --git a/provider_src/com/android/email/mail/store/ImapStore.java b/provider_src/com/android/email/mail/store/ImapStore.java
+index 5fc83e001..02ac2a6b2 100644
+--- a/provider_src/com/android/email/mail/store/ImapStore.java
++++ b/provider_src/com/android/email/mail/store/ImapStore.java
+@@ -19,7 +19,6 @@ package com.android.email.mail.store;
+ import android.content.Context;
+ import android.os.Build;
+ import android.os.Bundle;
+-import android.telephony.TelephonyManager;
+ import android.text.TextUtils;
+ import android.util.Base64;
+ 
+@@ -200,14 +199,9 @@ public class ImapStore extends Store {
+         // values in any IMAP ID message
+         synchronized (ImapStore.class) {
+             if (sImapId == null) {
+-                TelephonyManager tm =
+-                        (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+-                String networkOperator = tm.getNetworkOperatorName();
+-                if (networkOperator == null) networkOperator = "";
+-
+                 sImapId = makeCommonImapId(context.getPackageName(), Build.VERSION.RELEASE,
+                         Build.VERSION.CODENAME, Build.MODEL, Build.ID, Build.MANUFACTURER,
+-                        networkOperator);
++                        "");
+             }
+         }
+ 
+-- 
+2.21.0
+

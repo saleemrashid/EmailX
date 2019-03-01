@@ -1,0 +1,60 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Saleem Rashid <dev@saleemrashid.com>
+Date: Thu, 28 Feb 2019 21:39:01 +0000
+Subject: [PATCH] Use PackageInfoCompat
+
+---
+ src/com/android/mail/utils/HelpUrl.java | 3 ++-
+ src/com/android/mail/utils/Utils.java   | 8 +++++---
+ 2 files changed, 7 insertions(+), 4 deletions(-)
+
+diff --git a/src/com/android/mail/utils/HelpUrl.java b/src/com/android/mail/utils/HelpUrl.java
+index 607bc98b3..a19397a24 100644
+--- a/src/com/android/mail/utils/HelpUrl.java
++++ b/src/com/android/mail/utils/HelpUrl.java
+@@ -17,6 +17,7 @@ package com.android.mail.utils;
+ 
+ import android.content.Context;
+ import android.content.pm.PackageInfo;
++import androidx.core.content.pm.PackageInfoCompat;
+ import android.content.pm.PackageManager;
+ import android.net.Uri;
+ import android.text.TextUtils;
+@@ -70,7 +71,7 @@ public final class HelpUrl {
+         final String packageName = context.getApplicationInfo().packageName;
+         try {
+             final PackageInfo pi = context.getPackageManager().getPackageInfo(packageName, 0);
+-            return String.valueOf(pi.getLongVersionCode());
++            return String.valueOf(PackageInfoCompat.getLongVersionCode(pi));
+         } catch (PackageManager.NameNotFoundException e) {
+             LogUtils.e(LOG_TAG, "Error finding package name for application" + packageName);
+             throw new IllegalStateException("unable to determine package name for application");
+diff --git a/src/com/android/mail/utils/Utils.java b/src/com/android/mail/utils/Utils.java
+index ff93d0776..1174a0bc7 100644
+--- a/src/com/android/mail/utils/Utils.java
++++ b/src/com/android/mail/utils/Utils.java
+@@ -23,6 +23,8 @@ import android.app.Fragment;
+ import android.content.ComponentCallbacks;
+ import android.content.Context;
+ import android.content.Intent;
++import android.content.pm.PackageInfo;
++import androidx.core.content.pm.PackageInfoCompat;
+ import android.content.pm.PackageManager.NameNotFoundException;
+ import android.content.res.Configuration;
+ import android.content.res.Resources;
+@@ -198,9 +200,9 @@ public class Utils {
+     public static String getVersionCode(Context context) {
+         if (sVersionCode == null) {
+             try {
+-                sVersionCode = String.valueOf(context.getPackageManager()
+-                        .getPackageInfo(context.getPackageName(), 0 /* flags */)
+-                        .getLongVersionCode());
++                final PackageInfo pi = context.getPackageManager()
++                        .getPackageInfo(context.getPackageName(), 0 /* flags */);
++                sVersionCode = String.valueOf(PackageInfoCompat.getLongVersionCode(pi));
+             } catch (NameNotFoundException e) {
+                 LogUtils.e(Utils.LOG_TAG, "Error finding package %s",
+                         context.getApplicationInfo().packageName);
+-- 
+2.21.0
+

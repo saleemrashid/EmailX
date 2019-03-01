@@ -1,0 +1,112 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Saleem Rashid <dev@saleemrashid.com>
+Date: Thu, 28 Feb 2019 21:32:41 +0000
+Subject: [PATCH] Support multiple OAuth providers
+
+---
+ .../emailcommon/VendorPolicyLoader.java       |  5 ++++
+ .../account_setup_credentials_fragment.xml    |  4 +++
+ .../AccountSetupCredentialsFragment.java      | 27 ++++++++++++-------
+ 3 files changed, 26 insertions(+), 10 deletions(-)
+
+diff --git a/emailcommon/src/com/android/emailcommon/VendorPolicyLoader.java b/emailcommon/src/com/android/emailcommon/VendorPolicyLoader.java
+index 6d0de97d6..35b8d7e04 100644
+--- a/emailcommon/src/com/android/emailcommon/VendorPolicyLoader.java
++++ b/emailcommon/src/com/android/emailcommon/VendorPolicyLoader.java
+@@ -206,6 +206,11 @@ public class VendorPolicyLoader {
+         public String clientId;
+         public String clientSecret;
+         public String state;
++
++        @Override
++        public String toString() {
++            return label;
++        }
+     }
+ 
+     public static class Provider implements Serializable {
+diff --git a/res/layout/account_setup_credentials_fragment.xml b/res/layout/account_setup_credentials_fragment.xml
+index 01687c60f..f434b9960 100644
+--- a/res/layout/account_setup_credentials_fragment.xml
++++ b/res/layout/account_setup_credentials_fragment.xml
+@@ -78,6 +78,10 @@
+                 android:layout_gravity="center"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
++        <Spinner
++                android:id="@+id/oauth_provider"
++                android:layout_height="wrap_content"
++                android:layout_width="match_parent"/>
+         <Button
+                 android:id="@+id/sign_in_with_oauth"
+                 android:text="@string/sign_in_with_oauth"
+diff --git a/src/com/android/email/activity/setup/AccountSetupCredentialsFragment.java b/src/com/android/email/activity/setup/AccountSetupCredentialsFragment.java
+index 09623a2b8..7712b19b2 100644
+--- a/src/com/android/email/activity/setup/AccountSetupCredentialsFragment.java
++++ b/src/com/android/email/activity/setup/AccountSetupCredentialsFragment.java
+@@ -27,7 +27,9 @@ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.View.OnClickListener;
+ import android.view.ViewGroup;
++import android.widget.ArrayAdapter;
+ import android.widget.EditText;
++import android.widget.Spinner;
+ import android.widget.TextView;
+ 
+ import com.android.email.R;
+@@ -64,6 +66,7 @@ public class AccountSetupCredentialsFragment extends AccountSetupFragment
+     public static final String EXTRA_OAUTH_EXPIRES_IN_SECONDS = "expiresInSeconds";
+ 
+     private View mOAuthGroup;
++    private Spinner mOAuthProviderView;
+     private View mOAuthButton;
+     private EditText mImapPasswordText;
+     private EditText mRegularPasswordText;
+@@ -132,6 +135,7 @@ public class AccountSetupCredentialsFragment extends AccountSetupFragment
+         mImapPasswordText = UiUtilities.getView(view, R.id.imap_password);
+         mRegularPasswordText = UiUtilities.getView(view, R.id.regular_password);
+         mOAuthGroup = UiUtilities.getView(view, R.id.oauth_group);
++        mOAuthProviderView = UiUtilities.getView(view, R.id.oauth_provider);
+         mOAuthButton = UiUtilities.getView(view, R.id.sign_in_with_oauth);
+         mOAuthButton.setOnClickListener(this);
+         mClientCertificateSelector = UiUtilities.getView(view, R.id.client_certificate_selector);
+@@ -194,6 +198,14 @@ public class AccountSetupCredentialsFragment extends AccountSetupFragment
+                 getActivity().getResources().getBoolean(R.bool.skip_oauth_on_setup);
+         mOfferOAuth = mOfferOAuth && !skipOAuth;
+ 
++        if (mOfferOAuth) {
++            final ArrayAdapter<OAuthProvider> oauthProvidersAdapter =
++                    new ArrayAdapter<OAuthProvider>(getActivity(), android.R.layout.simple_spinner_item,
++                            mOauthProviders);
++            oauthProvidersAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
++            mOAuthProviderView.setAdapter(oauthProvidersAdapter);
++        }
++
+         mOAuthGroup.setVisibility(mOfferOAuth ? View.VISIBLE : View.GONE);
+         mRegularPasswordText.setVisibility(mOfferOAuth ? View.GONE : View.VISIBLE);
+ 
+@@ -291,16 +303,11 @@ public class AccountSetupCredentialsFragment extends AccountSetupFragment
+     public void onClick(final View view) {
+         final int viewId = view.getId();
+         if (viewId == R.id.sign_in_with_oauth) {
+-            // TODO currently the only oauth provider we support is google.
+-            // If we ever have more than 1 oauth provider, then we need to implement some sort
+-            // of picker UI. For now, just always take the first oauth provider.
+-            if (mOauthProviders.size() > 0) {
+-                mProviderId = mOauthProviders.get(0).id;
+-                final Intent i = new Intent(getActivity(), OAuthAuthenticationActivity.class);
+-                i.putExtra(OAuthAuthenticationActivity.EXTRA_EMAIL_ADDRESS, mEmailAddress);
+-                i.putExtra(OAuthAuthenticationActivity.EXTRA_PROVIDER, mProviderId);
+-                startActivityForResult(i, OAuthAuthenticationActivity.REQUEST_OAUTH);
+-            }
++            mProviderId = ((OAuthProvider) mOAuthProviderView.getSelectedItem()).id;
++            final Intent i = new Intent(getActivity(), OAuthAuthenticationActivity.class);
++            i.putExtra(OAuthAuthenticationActivity.EXTRA_EMAIL_ADDRESS, mEmailAddress);
++            i.putExtra(OAuthAuthenticationActivity.EXTRA_PROVIDER, mProviderId);
++            startActivityForResult(i, OAuthAuthenticationActivity.REQUEST_OAUTH);
+         } else if (viewId == R.id.done) {
+             final Callback callback = (Callback) getActivity();
+             callback.onNextButton();
+-- 
+2.21.0
+
